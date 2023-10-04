@@ -6,10 +6,13 @@ print("wolfram is running")
 lattice_size = 30
 
 # number of simulation time steps (number of iterations)
-time_steps = 16
+time_steps = 15
 
-print(lattice_size)
-print(type(lattice_size))
+# Define characters for representing 0 and 1
+characters = ['□', '■']  # Unicode block elements for square
+
+# print(lattice_size)
+# print(type(lattice_size))
 
 lattice = []
 
@@ -17,7 +20,7 @@ for i in range(lattice_size):
     lattice.append(0)
 
 # display length
-print(lattice)
+# print(lattice)
 print("length = ", len(lattice))
 
 # display midpoint of lattice
@@ -26,6 +29,12 @@ print("midpoint = ", mid_point)
 
 # set midpoint to 1
 lattice[mid_point] = 1
+
+# Display the initial state
+for cell in lattice:
+    print(characters[cell], end='')
+print()  # Move to the next line
+
 
 for t in range(time_steps):
 
@@ -46,7 +55,12 @@ for t in range(time_steps):
         else:
             new_state.append(1)
 
-    print(lattice)
-    print(new_state)
+    # print(lattice)
+    # print(new_state)
 
     lattice = new_state
+
+    # Display the new state
+    for cell in new_state:
+        print(characters[cell], end='')
+    print()  # Move to the next line
