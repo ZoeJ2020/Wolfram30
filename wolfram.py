@@ -1,16 +1,14 @@
 print("wolfram is running")
 
-# wolfram rule 30 cellular automation script
+# wolfram rule 30 cellular automaton script
 
 # lattice size (length)
 lattice_size = 30
 
 # number of simulation time steps (number of iterations)
-time_steps = 50
-
+time_steps = 16
 
 print(lattice_size)
-
 print(type(lattice_size))
 
 lattice = []
@@ -28,40 +26,27 @@ print("midpoint = ", mid_point)
 
 # set midpoint to 1
 lattice[mid_point] = 1
-print(lattice)
 
-# for t in range(time_steps):
-    # create a temporary lattice in memory to store previous/next values
+for t in range(time_steps):
 
-trio_state = []
-for i in range(lattice_size-2):
+    # Create an array to hold the state of three adjacent cells for each cell
+    trio_state = []
+    for i in range(lattice_size):
+        left = lattice[i - 1] if i - 1 >= 0 else 0
+        current = lattice[i]
+        right = lattice[i + 1] if i + 1 < lattice_size else 0
+        state = left, current, right
+        trio_state.append(state)
 
-    i += 1
+    # Generate the new state based on the rules of Rule 30
+    new_state = []
+    for i in range(lattice_size):
+        if trio_state[i] == (0, 0, 0) or trio_state[i] == (1, 1, 1) or trio_state[i] == (1, 1, 0) or trio_state[i] == (1, 0, 1):
+            new_state.append(0)
+        else:
+            new_state.append(1)
 
-    left = lattice[i-1]
-    current = lattice[i]
-    right = lattice[i+1]
+    print(lattice)
+    print(new_state)
 
-    state = left, current, right
-
-    # add 3-cell state to array
-    trio_state.append(state)
-
-# print(trio_state)
-
-new_state = []
-
-for i in trio_state:
-    print(i)
-    # check formation of state, ruin rule 30
-
-    if i == (0, 0, 0) or i == (1, 1, 1) or i == (1, 1, 0) or i == (1, 0, 1):
-        new_state.append(0)
-
-    else:
-        new_state.append(1)
-
-print(lattice)
-print(new_state)
-
-    # print "graphics" of 1D lattice
+    lattice = new_state
