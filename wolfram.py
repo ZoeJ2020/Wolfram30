@@ -2,11 +2,11 @@ print("wolfram is running")
 
 # wolfram rule 30 cellular automaton script
 
-# lattice size (length)
-lattice_size = 30
-
 # number of simulation time steps (number of iterations)
 time_steps = 15
+
+# lattice size (length)
+lattice_size = time_steps*2
 
 # Define characters for representing 0 and 1
 characters = ['□', '■']  # Unicode block elements for square
@@ -64,3 +64,5 @@ for t in range(time_steps):
     for cell in new_state:
         print(characters[cell], end='')
     print()  # Move to the next line
+
+exit()
